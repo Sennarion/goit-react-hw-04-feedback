@@ -4,22 +4,22 @@ import { Button } from 'components/UI/Button.styled';
 function FeedbackOptions({ options, onLeaveFeedback }) {
   return (
     <>
-      <Button onClick={onLeaveFeedback} styleType="positive">
-        Good
-      </Button>
-      <Button onClick={onLeaveFeedback} styleType="neutral">
-        Neutral
-      </Button>
-      <Button onClick={onLeaveFeedback} styleType="bad">
-        Bad
-      </Button>
+      {options.map(option => (
+        <Button
+          key={option}
+          onClick={() => onLeaveFeedback(option)}
+          label={option}
+        >
+          {option}
+        </Button>
+      ))}
     </>
   );
 }
 
 FeedbackOptions.propTypes = {
-  options: PropTypes.number.isRequired,
-  styleType: PropTypes.string,
+  options: PropTypes.arrayOf(PropTypes.string.isRequired).isRequired,
+  onLeaveFeedback: PropTypes.func.isRequired,
 };
 
 export default FeedbackOptions;

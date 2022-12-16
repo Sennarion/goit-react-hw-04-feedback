@@ -19,10 +19,9 @@ export default class App extends Component {
     return ((this.state.good / this.countTotalFeedback()) * 100).toFixed();
   };
 
-  onLeaveFeedback = event => {
-    const feedbackName = event.target.innerText.toLowerCase();
+  onLeaveFeedback = option => {
     this.setState(prevState => ({
-      [feedbackName]: prevState[feedbackName] + 1,
+      [option]: prevState[option] + 1,
     }));
   };
 
@@ -31,7 +30,10 @@ export default class App extends Component {
     return (
       <>
         <Section title="Please leave feedback">
-          <FeedbackOptions options={1} onLeaveFeedback={this.onLeaveFeedback} />
+          <FeedbackOptions
+            options={Object.keys(this.state)}
+            onLeaveFeedback={this.onLeaveFeedback}
+          />
         </Section>
         <Section title="Statistics">
           {this.countTotalFeedback() ? (

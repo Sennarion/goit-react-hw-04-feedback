@@ -6,19 +6,24 @@ export const Button = styled.button`
     padding: 5px 15px;
     border-radius: 5px;
 
-    background-color: ${({ styleType }) => {
-    switch (styleType) {
-        case 'positive':
+    background-color: ${({ label }) => {
+    switch (label) {
+        case 'good':
             return 'green';
         case 'neutral':
             return 'yellow';
         case 'bad':
             return 'red';
-        default: return 'grey'
+        default:
+             return 'grey'
         }
 }};
     &:not(:last-child) {
         margin-right: 10px;
+    }
+
+    &::first-letter{
+        text-transform: uppercase;
     }
 
     
